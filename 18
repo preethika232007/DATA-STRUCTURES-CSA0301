@@ -1,0 +1,11 @@
+from collections import deque
+
+queue = deque()
+queue.append("Job1")
+queue.append("Job2")
+print(queue.popleft())
+
+stack = []
+stack.append("Undo1")
+stack.append("Undo2")
+print(stack.pop())
