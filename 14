@@ -1,0 +1,7 @@
+seats = 5
+
+if seats > 0:
+    seats -= 1
+    print("Ticket Booked")
+else:
+    print("No Seats Available")
