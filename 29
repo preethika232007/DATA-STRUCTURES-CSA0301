@@ -1,0 +1,10 @@
+def divide(arr):
+    if len(arr) <= 1:
+        return arr
+
+    mid = len(arr) // 2
+    left = divide(arr[:mid])
+    right = divide(arr[mid:])
+    return left + right
+
+print(divide([1, 2, 3, 4]))
