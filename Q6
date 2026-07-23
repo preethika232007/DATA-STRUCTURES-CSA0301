@@ -1,0 +1,12 @@
+balance = 1000
+
+amount = int(input("Enter deposit amount: "))
+balance += amount
+
+amount = int(input("Enter withdrawal amount: "))
+if amount <= balance:
+    balance -= amount
+else:
+    print("Insufficient Balance")
+
+print("Balance =", balance)
