@@ -1,0 +1,13 @@
+inventory = ["Pen", "Book"]
+
+inventory.append("Pencil")
+print(inventory)
+
+inventory.remove("Book")
+print(inventory)
+
+item = input("Search item: ")
+if item in inventory:
+    print("Available")
+else:
+    print("Not Available")
