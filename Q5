@@ -1,0 +1,3 @@
+n = int(input("Enter size: "))
+arr = [0] * n
+print("Memory allocated for", n, "elements")
