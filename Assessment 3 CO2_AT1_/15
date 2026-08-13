@@ -1,0 +1,43 @@
+#include <stdio.h>
+#define SIZE 5
+
+int queue[SIZE];
+int front = -1, rear = -1;
+
+void enqueue(int customer) {
+    if (rear == SIZE - 1) {
+        printf("Queue Full\n");
+        return;
+    }
+
+    if (front == -1)
+        front = 0;
+
+    queue[++rear] = customer;
+}
+
+void dequeue() {
+    if (front == -1 || front > rear) {
+        printf("No customers\n");
+        return;
+    }
+
+    printf("Serving Customer: %d\n", queue[front++]);
+
+    if (front > rear)
+        front = rear = -1;
+}
+
+int main() {
+    enqueue(101);
+    enqueue(102);
+    enqueue(103);
+    enqueue(104);
+
+    dequeue();
+    dequeue();
+    dequeue();
+    dequeue();
+
+    return 0;
+}
