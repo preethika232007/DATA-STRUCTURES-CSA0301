@@ -1,0 +1,46 @@
+#include <stdio.h>
+#define SIZE 5
+
+int main() {
+    int stack[SIZE] = {22, 55, 33, 66, 88};
+    int top = 4;
+    int i, temp;
+
+    printf("Original Stack:\n");
+    for (i = top; i >= 0; i--)
+        printf("%d\n", stack[i]);
+
+    // Invert stack
+    for (i = 0; i < SIZE / 2; i++) {
+        temp = stack[i];
+        stack[i] = stack[SIZE - 1 - i];
+        stack[SIZE - 1 - i] = temp;
+    }
+
+    // Pop three times
+    top--;
+    top--;
+    top--;
+
+    // Push 90, 36, 11, 88
+    stack[++top] = 90;
+    stack[++top] = 36;
+
+    // Stack full here
+    printf("\nStack after operations:\n");
+
+    for (i = top; i >= 0; i--)
+        printf("%d\n", stack[i]);
+
+    // Pop twice
+    top--;
+    top--;
+
+    printf("\nFinal Stack:\n");
+    for (i = top; i >= 0; i--)
+        printf("%d\n", stack[i]);
+
+    printf("Top is at index %d\n", top);
+
+    return 0;
+}
