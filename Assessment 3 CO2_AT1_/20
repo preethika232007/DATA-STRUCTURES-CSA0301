@@ -1,0 +1,44 @@
+#include <stdio.h>
+
+int binarySearch(long long arr[], int n, long long key) {
+    int low = 0;
+    int high = n - 1;
+
+    while (low <= high) {
+        int mid = (low + high) / 2;
+
+        printf("Checking position %d: %lld\n",
+               mid + 1, arr[mid]);
+
+        if (arr[mid] == key)
+            return mid;
+
+        if (key < arr[mid])
+            high = mid - 1;
+        else
+            low = mid + 1;
+    }
+
+    return -1;
+}
+
+int main() {
+    long long pnr[] = {
+        4056779, 4056780, 4056781, 4056782,
+        4056783, 4056784, 4056785, 4056786,
+        4056787, 4056788, 4056789
+    };
+
+    int n = 11;
+    long long key = 4056786;
+
+    int pos = binarySearch(pnr, n, key);
+
+    if (pos != -1)
+        printf("\nPNR %lld found at position %d\n",
+               key, pos + 1);
+    else
+        printf("\nPNR %lld not found\n", key);
+
+    return 0;
+}
