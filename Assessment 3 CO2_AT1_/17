@@ -1,0 +1,32 @@
+#include <stdio.h>
+#define SIZE 10
+
+int queue[SIZE];
+int front = 0, rear = -1;
+
+void enqueue(int doc) {
+    queue[++rear] = doc;
+}
+
+void dequeue() {
+    if (front > rear) {
+        printf("No documents\n");
+        return;
+    }
+
+    printf("Printing Document %d\n", queue[front++]);
+}
+
+int main() {
+    enqueue(1003);
+    enqueue(1008);
+    enqueue(1010);
+    enqueue(1005);
+    enqueue(1009);
+    enqueue(1004);
+
+    while (front <= rear)
+        dequeue();
+
+    return 0;
+}
