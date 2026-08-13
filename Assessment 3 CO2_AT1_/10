@@ -1,0 +1,33 @@
+#include <stdio.h>
+
+struct Item {
+    int value;
+    int frequency;
+};
+
+int main() {
+    int stack[] = {10,10,10,20,20,30,30,30,30};
+    int n = 9;
+    struct Item compressed[9];
+    int top = -1;
+    int i;
+
+    for (i = 0; i < n; i++) {
+        if (top >= 0 && compressed[top].value == stack[i]) {
+            compressed[top].frequency++;
+        } else {
+            top++;
+            compressed[top].value = stack[i];
+            compressed[top].frequency = 1;
+        }
+    }
+
+    printf("Value\tFrequency\n");
+
+    for (i = 0; i <= top; i++)
+        printf("%d\t%d\n",
+               compressed[i].value,
+               compressed[i].frequency);
+
+    return 0;
+}
