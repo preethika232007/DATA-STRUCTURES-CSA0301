@@ -1,0 +1,37 @@
+#include <stdio.h>
+
+int binarySearch(int arr[], int n, int key) {
+    int low = 0, high = n - 1, mid;
+
+    while (low <= high) {
+        mid = (low + high) / 2;
+
+        if (arr[mid] == key)
+            return mid;
+
+        if (key < arr[mid])
+            high = mid - 1;
+        else
+            low = mid + 1;
+    }
+
+    return -1;
+}
+
+int main() {
+    int arr[] = {66,111,212,323,432,543,643,649,777,888};
+    int n = 10;
+    int key, pos;
+
+    printf("Enter key: ");
+    scanf("%d", &key);
+
+    pos = binarySearch(arr, n, key);
+
+    if (pos != -1)
+        printf("Element %d found at position %d\n", key, pos + 1);
+    else
+        printf("Element %d not found\n", key);
+
+    return 0;
+}
