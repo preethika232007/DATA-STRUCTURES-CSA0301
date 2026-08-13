@@ -1,0 +1,41 @@
+#include <stdio.h>
+
+int balanced(char exp[]) {
+    char stack[100];
+    int top = -1;
+    int i;
+
+    for (i = 0; exp[i] != '\0'; i++) {
+
+        if (exp[i] == '(' || exp[i] == '[' || exp[i] == '{')
+            stack[++top] = exp[i];
+
+        else if (exp[i] == ')' || exp[i] == ']' || exp[i] == '}') {
+
+            if (top == -1)
+                return 0;
+
+            if ((exp[i] == ')' && stack[top] != '(') ||
+                (exp[i] == ']' && stack[top] != '[') ||
+                (exp[i] == '}' && stack[top] != '{'))
+                return 0;
+
+            top--;
+        }
+    }
+
+    return top == -1;
+}
+
+int main() {
+    char exp1[] = "[9*(k+8-{6+e}+77)/100";
+    char exp2[] = "(((a*b)+[u/2]-d)";
+
+    printf("Expression 1: %s\n",
+           balanced(exp1) ? "Balanced" : "Not Balanced");
+
+    printf("Expression 2: %s\n",
+           balanced(exp2) ? "Balanced" : "Not Balanced");
+
+    return 0;
+}
