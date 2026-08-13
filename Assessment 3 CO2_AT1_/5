@@ -1,0 +1,79 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Node {
+    int data;
+    struct Node *prev, *next;
+};
+
+struct Node *createNode(int data) {
+    struct Node *newNode =
+        (struct Node *)malloc(sizeof(struct Node));
+
+    newNode->data = data;
+    newNode->prev = NULL;
+    newNode->next = NULL;
+
+    return newNode;
+}
+
+void display(struct Node *head) {
+    while (head != NULL) {
+        printf("%d <-> ", head->data);
+        head = head->next;
+    }
+    printf("NULL\n");
+}
+
+int main() {
+    struct Node *head = NULL, *temp, *newNode;
+    int i;
+
+    // Create 6 nodes
+    for (i = 1; i <= 6; i++) {
+        newNode = createNode(i * 10);
+
+        if (head == NULL) {
+            head = newNode;
+        } else {
+            temp = head;
+            while (temp->next != NULL)
+                temp = temp->next;
+
+            temp->next = newNode;
+            newNode->prev = temp;
+        }
+    }
+
+    printf("Original List:\n");
+    display(head);
+
+    // Insert at 3rd position
+    temp = head;
+    for (i = 1; i < 3; i++)
+        temp = temp->next;
+
+    newNode = createNode(99);
+
+    newNode->prev = temp->prev;
+    newNode->next = temp;
+
+    temp->prev->next = newNode;
+    temp->prev = newNode;
+
+    printf("After Insertion:\n");
+    display(head);
+
+    // Delete 2nd position
+    temp = head->next;
+
+    temp->prev->next = temp->next;
+    temp->next->prev = temp->prev;
+
+    free(temp);
+
+    printf("After Deletion:\n");
+    display(head);
+
+    return 0;
+}
