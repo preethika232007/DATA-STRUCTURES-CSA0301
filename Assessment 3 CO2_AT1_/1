@@ -1,0 +1,33 @@
+#include <stdio.h>
+#define SIZE 5
+
+int main() {
+    int stack[SIZE], top = -1;
+    
+    // Push 45
+    stack[++top] = 45;
+    // Push 22
+    stack[++top] = 22;
+    // Push 11
+    stack[++top] = 11;
+    // Push 77
+    stack[++top] = 77;
+
+    // Pop
+    top--;
+
+    // Push 44
+    stack[++top] = 44;
+    // Push 33
+    stack[++top] = 33;
+
+    // Pop, Pop, Pop
+    top--;
+    top--;
+    top--;
+
+    printf("Peak element = %d\n", stack[top]);
+    printf("Index position = %d\n", top);
+
+    return 0;
+}
