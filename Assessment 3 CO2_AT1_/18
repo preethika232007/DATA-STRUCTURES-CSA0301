@@ -1,0 +1,31 @@
+#include <stdio.h>
+
+int main() {
+    int arr[] = {
+        20142015,
+        20142033,
+        20142011,
+        20142017,
+        20142010,
+        20142056,
+        20142003
+    };
+
+    int n = 7;
+    int key = 20142010;
+    int i, found = 0;
+
+    for (i = 0; i < n; i++) {
+        if (arr[i] == key) {
+            printf("Register Number %d found at position %d\n",
+                   key, i + 1);
+            found = 1;
+            break;
+        }
+    }
+
+    if (!found)
+        printf("Register Number %d not found\n", key);
+
+    return 0;
+}
