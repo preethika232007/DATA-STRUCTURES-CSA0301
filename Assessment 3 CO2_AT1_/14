@@ -1,0 +1,54 @@
+#include <stdio.h>
+#define SIZE 10
+
+struct Customer {
+    int id;
+    int priority;
+};
+
+struct Customer queue[SIZE];
+int n = 0;
+
+void insert(int id, int priority) {
+    int i;
+
+    queue[n].id = id;
+    queue[n].priority = priority;
+    n++;
+
+    for (i = n - 1; i > 0; i--) {
+        if (queue[i].priority > queue[i - 1].priority) {
+            struct Customer temp = queue[i];
+            queue[i] = queue[i - 1];
+            queue[i - 1] = temp;
+        }
+    }
+}
+
+void serve() {
+    if (n == 0) {
+        printf("Queue Empty\n");
+        return;
+    }
+
+    printf("Serving Customer %d\n", queue[0].id);
+
+    for (int i = 0; i < n - 1; i++)
+        queue[i] = queue[i + 1];
+
+    n--;
+}
+
+int main() {
+    insert(101, 1);
+    insert(102, 1);
+    insert(103, 3);   // VIP
+    insert(104, 1);
+
+    serve();
+    serve();
+    serve();
+    serve();
+
+    return 0;
+}
